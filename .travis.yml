@@ -2,10 +2,13 @@ language: java
 jdk:
   - openjdk11
 
-before_install:
-  - chmod +x mvnw
-
 script: ./mvnw clean install
 
-notifications:
+
+jobs:
+  include:
+    - stage: Test
+      script: ./mvnw clean test
+
+notification:
   email: aayushishuklartm@gmail.com
