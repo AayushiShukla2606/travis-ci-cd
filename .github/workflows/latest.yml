@@ -31,7 +31,10 @@ jobs:
       uses: GabrielBB/xvfb-action@v1
       with:
         run: |
-          mvn test -B -Dmaven.javadoc.skip=true -Djacoco.skip=true
+          mvnw test -B -Dmaven.javadoc.skip=true -Djacoco.skip=true
+      
+    - name: Deploy SNAPSHOT build
+      run: mvnw deploy -DskipTests=true -Dlicense.skip=true -Dpmd.skip=true
       env:
         MAVEN_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
