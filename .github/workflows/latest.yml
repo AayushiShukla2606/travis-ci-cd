@@ -1,0 +1,17 @@
+name: Migrate
+
+on: push
+
+jobs:
+  build:
+    name: migrate code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Migrate
+        uses: github/migrate@v3
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
